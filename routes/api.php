@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AnlageController;
+use App\Http\Controllers\AnlagenleistungController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HerstellerController;
@@ -73,10 +75,7 @@ Route::middleware('client')->get('/typ/{id}/hersteller', [TypController::Class, 
 | USV-Anlage
 |
 */
-Route::middleware('client')->get('/usv-anlagen', function(){
-
-    return Anlage::all();
-});
+Route::middleware('client')->get('/usv-anlagen', [AnlageController::Class, 'index']);
 
 /*
 |
@@ -93,10 +92,7 @@ Route::middleware('client')->get('/usv-parameter', function(){
 | USV-Leistungen
 |
 */
-Route::middleware('client')->get('/usv-leistungen', function(){
-
-    return Anlagenleistung::all();
-});
+Route::middleware('client')->get('/usv-leistungen', [AnlagenleistungController::Class,'index']);
 
 
 

@@ -1,4 +1,5 @@
-@props(['titlePage'])
+@props(['titlePage', 'activePage'])
+
 
 <!--<nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur" navbar-scroll="true">-->
 <nav class="navbar navbar-main bg-gradient-grey navbar-expand-lg position-sticky mt-4 top-1 px-0 mx-4 shadow-none border-radius-xl z-index-sticky" id="navbarBlur" data-scroll="true">
@@ -6,6 +7,7 @@
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
                 <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Pages</a></li>
+                @isset($activePage) <li class="breadcrumb-item text-sm text-dark active" aria-current="page">{{ $activePage }}</li> @endisset
                 <li class="breadcrumb-item text-sm text-dark active" aria-current="page">{{ $titlePage }}</li>
             </ol>
             <h6 class="font-weight-bolder mb-0">{{ $titlePage }}</h6>

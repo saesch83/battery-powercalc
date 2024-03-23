@@ -11,17 +11,17 @@
                         <div class="card-header p-3 pt-2">
                             <div
                                 class="icon icon-lg icon-shape bg-gradient-warning shadow-dark text-center border-radius-xl mt-n4 position-absolute">
-                                <i class="material-icons opacity-10">power</i>
+                                <i class="material-icons opacity-10">battery_full</i>
                             </div>
                             <div class="text-end pt-1">
                                 <p class="text-sm mb-0 text-capitalize">UPS Models</p>
-                                <h4 class="mb-0">{{$anzahlAnlagen}}</h4>
+                                <h4 class="mb-0"><a href="{{ route('anlagen') }}" class="stretched-link"></a>{{$anzahlAnlagen}}</h4>
                             </div>
                         </div>
                         <hr class="dark horizontal my-0">
                         <div class="card-footer p-3">
                             <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+5 </span>than
-                                lask week</p>
+                                lask week</p>                            
                         </div>
                     </div>
                 </div>
@@ -30,11 +30,11 @@
                         <div class="card-header p-3 pt-2">
                             <div
                                 class="icon icon-lg icon-shape bg-gradient-info shadow-primary text-center border-radius-xl mt-n4 position-absolute">
-                                <i class="material-icons opacity-10">power</i>
+                                <i class="material-icons opacity-10">bolt</i>
                             </div>
                             <div class="text-end pt-1">
                                 <p class="text-sm mb-0 text-capitalize">Power Ratings</p>
-                                <h4 class="mb-0">{{$anzahlLeistungen}}</h4>
+                                <h4 class="mb-0"><a href="{{ route('anlagenleistungen') }}" class="stretched-link"></a>{{$anzahlLeistungen}}</h4>
                             </div>
                         </div>
                         <hr class="dark horizontal my-0">
@@ -49,7 +49,7 @@
                         <div class="card-header p-3 pt-2">
                             <div
                                 class="icon icon-lg icon-shape bg-gradient-success shadow-success text-center border-radius-xl mt-n4 position-absolute">
-                                <i class="material-icons opacity-10">person</i>
+                                <i class="material-icons opacity-10">factory</i>
                             </div>
                             <div class="text-end pt-1">
                                 <p class="text-sm mb-0 text-capitalize">Battery Manufacturer</p>
@@ -68,7 +68,7 @@
                         <div class="card-header p-3 pt-2">
                             <div
                                 class="icon icon-lg icon-shape bg-gradient-danger shadow-info text-center border-radius-xl mt-n4 position-absolute">
-                                <i class="material-icons opacity-10">weekend</i>
+                                <i class="material-icons opacity-10">battery_unknown</i>
                             </div>
                             <div class="text-end pt-1">
                                 <p class="text-sm mb-0 text-capitalize">Battery Types</p>
