@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Schrank;
+use Carbon\Traits\ToStringFormat;
 use Illuminate\Http\Request;
 use App\Models\Anlagenleistung;
 use App\Models\Anlage;
@@ -14,6 +16,39 @@ use App\plugins\CubicSplines;
 
 class PowerCalcController extends Controller
 {
+    
+    function edit(){
+
+        $formData["anlagen"] = Anlagenleistung::all();
+
+        $formData["schraenke"] = Schrank::orderBy("name")->get();
+
+        $formData["hersteller"] = Hersteller::orderBy("name")->get();
+        
+        for($i = 5; $i <= 100 ; $i+=5){
+            $formData["load"][] = $i;
+        }
+
+        for($i = 2; $i <= 600 ; $i++){
+            $formData["time"][] = $i;
+        }
+
+        for($i = 1; $i <= 99 ; $i++){
+            $formData["tolerance"][] = $i;
+        }
+
+        for($i = 1.6; $i <= 1.81 ; $i+=0.01){
+            $formData["cellvoltage"][] = $i;
+        }
+
+        for($i = 1; $i <= 10 ; $i++){
+            $formData["strings"][] = $i;
+        }
+
+
+        return view("pages.batterycalc", ["formData" => $formData]);
+    }
+    
     function interpolieren($inputkoordinaten, $wert)
     {
         $temp_array = [];
@@ -125,9 +160,7 @@ class PowerCalcController extends Controller
     
     public function batteryCalc(Request $request){
         
-        //function bat_berechnung($usv_id, $leistung, $wunschautonomiezeit, $entladeschlussspanung = 1.70, $min_straenge = 1, $max_straenge = 10,$autonomiezeitmin = 0.98, $autonomiezeitmax = 1.1, $batteriehersteller = null, $batterietypid = null, $batteriebloecke = null)
-        //$bat_berechnung = bat_berechnung($usv_id, ($dcleistung-($nennleistung*$cosphi*(100-$_GET["Auslastung"])/100))*1000, $_GET["Autonomiezeit"], $_GET["Entladeschlussspanung"],$_GET["Min-Batteriestraenge"],$_GET["Max-Batteriestraenge"], $_GET["Von-Zeittoleranz"]/100, $_GET["Bis-Zeittoleranz"]/100, $batteriehersteller);
-    
+        
         $wunschautonomiezeit = $request["autonomiezeit"];
         $autonomiezeitmin = $request["autonomiezeitmin"];
         $autonomiezeitmax = $request["autonomiezeitmax"];
@@ -135,7 +168,7 @@ class PowerCalcController extends Controller
         $batteriebloecke = null;
 
         $anlagenleistung = Anlagenleistung::find($request["usv_leistungs_id"]);
-        
+
         if(!empty($anlagenleistung)){
             $anlage = Anlage::find($anlagenleistung->id_usv);
             
@@ -190,69 +223,5 @@ class PowerCalcController extends Controller
                 "message" => "Anlagenleistung fehlt"
             ], 404);
         }
-        
-
-        /*
-        $select = "SELECT `batterietyp`.`leistungprozelle`, `batterietyp`.`id` As 'batterie_id', `batterietyp`.`name` As 'Batterietypname', `batteriehersteller`.`name` as 'Batterietyphersteller', 
-									`batterietyp`.`spannung`, `batterietyp`.`zellen`, `batterietyp`.`c10` FROM `batterietyp`,`batteriehersteller` WHERE `batterietyp`.`id_hersteller` = `batteriehersteller`.`id`";
-	
-        $conditions = [];
-        $parameters = [];
-
-        if (!is_null($batteriehersteller)){
-            $conditions[] = "batterietyp.id_hersteller = ?";
-            $parameters[] = $batteriehersteller;
-        }
-        if(!is_null($batterietypid)){
-            $conditions[] = "batterietyp.id = ?";
-            $parameters[] = $batterietypid;						
-        }
-
-        if ($conditions)
-        {
-            $select .= " AND " . implode(" AND ", $conditions);
-        }
-
-        $query = $GLOBALS["dbh"]->prepare($select);
-        $query->execute($parameters);
-
-        while ($row = $query->fetch()){			
-            if(batterie_hat_werte($row["batterie_id"])){
-                if(!is_null($usv_id)){
-                    $usv_bat_config = usv_bat_config($usv_id,$row["batterie_id"],$min_straenge,$max_straenge);
-                }else{
-                    $usv_bat_config['strang_anzahl'][0] = $max_straenge;
-                    $usv_bat_config['batterie_anzahl'][0] = $batteriebloecke;
-                }
-                foreach ($usv_bat_config['strang_anzahl'] as $strang_anzahl) {
-                    foreach ($usv_bat_config['batterie_anzahl'] as $batterie_anzahl) {
-                        if ($batterie_anzahl == $batteriebloecke || is_null($batteriebloecke)){
-                            $temp_zeit = zeit_berechnen($leistung, $strang_anzahl, $batterie_anzahl, $row["batterie_id"], $entladeschlussspanung);
-                                if(($temp_zeit['zeit'] >= ($wunschautonomiezeit*$autonomiezeitmin) && $temp_zeit['zeit'] <= ($wunschautonomiezeit*$autonomiezeitmax) && $temp_zeit['zeit'] > 0) ||
-                                ($autonomiezeitmin == null && $autonomiezeitmax == null && $temp_zeit['zeit'] > 0) ){
-                                    $return_array[] =  array(
-                                                'usv' => array(
-                                                    'usv_id' =>	$usv_id,
-                                                    'leistung' => $leistung
-                                                ),
-                                                'bat_zeit' => $temp_zeit['zeit'],
-                                                'bat_leistung' => $temp_zeit['batterieblockleistung'],
-                                                'bat_config' => array(
-                                                    'batterie_id' => $row["batterie_id"],
-                                                    'strang_anzahl' => $strang_anzahl,
-                                                    'batterie_anzahl' => $batterie_anzahl									
-                                                )
-                                            );	
-                                }
-                        }
-                    }
-                }
-                
-            }
-        }
-        
-        return $return_array;
-
-        */
     }
 }

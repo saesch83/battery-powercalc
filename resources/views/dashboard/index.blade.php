@@ -5,7 +5,7 @@
         <x-navbars.navs.auth titlePage="Dashboard"></x-navbars.navs.auth>
         <!-- End Navbar -->
         <div class="container-fluid py-4">
-            <div class="row">
+            <div class="row" style="height: calc(100vh - 230px)">
                 <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
                     <div class="card">
                         <div class="card-header p-3 pt-2">
@@ -14,14 +14,13 @@
                                 <i class="material-icons opacity-10">battery_full</i>
                             </div>
                             <div class="text-end pt-1">
-                                <p class="text-sm mb-0 text-capitalize">UPS Models</p>
+                                <p class="text-sm mb-0 text-capitalize">@lang('UPS Systems')</p>
                                 <h4 class="mb-0"><a href="{{ route('anlagen') }}" class="stretched-link"></a>{{$anzahlAnlagen}}</h4>
                             </div>
                         </div>
                         <hr class="dark horizontal my-0">
                         <div class="card-footer p-3">
-                            <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+5 </span>than
-                                lask week</p>                            
+                            <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+5 </span>@lang("than lask week")</p>                            
                         </div>
                     </div>
                 </div>
@@ -33,14 +32,13 @@
                                 <i class="material-icons opacity-10">bolt</i>
                             </div>
                             <div class="text-end pt-1">
-                                <p class="text-sm mb-0 text-capitalize">Power Ratings</p>
+                                <p class="text-sm mb-0 text-capitalize">@lang("Power Ratings")</p>
                                 <h4 class="mb-0"><a href="{{ route('anlagenleistungen') }}" class="stretched-link"></a>{{$anzahlLeistungen}}</h4>
                             </div>
                         </div>
                         <hr class="dark horizontal my-0">
                         <div class="card-footer p-3">
-                            <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+15 </span>than
-                                lask week</p>
+                            <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+15 </span>@lang("than lask week")</p>
                         </div>
                     </div>
                 </div>
@@ -52,14 +50,13 @@
                                 <i class="material-icons opacity-10">factory</i>
                             </div>
                             <div class="text-end pt-1">
-                                <p class="text-sm mb-0 text-capitalize">Battery Manufacturer</p>
-                                <h4 class="mb-0">{{$anzahlHersteller}}</h4>
+                                <p class="text-sm mb-0 text-capitalize">@lang("Battery Manufacturer")</p>
+                                <h4 class="mb-0"><a href="{{ route('hersteller') }}" class="stretched-link"></a>{{$anzahlHersteller}}</h4>
                             </div>
                         </div>
                         <hr class="dark horizontal my-0">
                         <div class="card-footer p-3">
-                            <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+1</span> than
-                                last week</p>
+                            <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+1 </span>@lang("than lask week")</p>
                         </div>
                     </div>
                 </div>
@@ -71,20 +68,17 @@
                                 <i class="material-icons opacity-10">battery_unknown</i>
                             </div>
                             <div class="text-end pt-1">
-                                <p class="text-sm mb-0 text-capitalize">Battery Types</p>
+                                <p class="text-sm mb-0 text-capitalize">@lang("Battery Types")</p>
                                 <h4 class="mb-0">{{$anzahlTypen}}</h4>
                             </div>
                         </div>
                         <hr class="dark horizontal my-0">
                         <div class="card-footer p-3">
-                            <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+10 </span>than
-                                last week</p>
+                            <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+10 </span>@lang("than lask week")</p>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div style='height:500px'>
-            </div>
+            </div>                        
             <x-footers.auth></x-footers.auth>
         </div>
     </main>

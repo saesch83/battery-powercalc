@@ -7,9 +7,14 @@ use App\Models\Hersteller;
 
 class HerstellerController extends Controller
 {
-    public function index(){
+    public function index(Request $request){
         $hersteller = Hersteller::all();
-        return response()->json($hersteller);
+        
+        if($request->expectsJson()){
+            return response()->json($hersteller);
+        }else{
+            return view("dashboard.hersteller", ["herstellerliste" => $hersteller]);
+        }
     }
 
     public function show($id){

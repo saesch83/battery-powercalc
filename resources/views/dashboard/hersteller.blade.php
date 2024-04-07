@@ -2,8 +2,8 @@
     <x-navbars.sidebar activePage='dashboard'></x-navbars.sidebar>
     <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
         <!-- Navbar -->
-        <x-navbars.navs.auth titlePage="{{__('Power Ratings')}}" activePage="Dashboard"></x-navbars.navs.auth>
-        <!-- End Navbar -->        
+        <x-navbars.navs.auth titlePage="{{__('Manufacturer')}}" activePage="Dashboard"></x-navbars.navs.auth>
+        <!-- End Navbar -->
         <div class="container-fluid py-4">
             <div class="row" style="height: calc(100vh - 230px)">
                 <div class="col-12">
@@ -15,60 +15,30 @@
                                         <tr>
                                             <th
                                                 class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                @lang("UPS System")</th>
+                                                @lang("NAME")</th>
                                             <th
                                                 class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                DC-50</th>
+                                                @lang("Logo")</th>
                                             <th
                                                 class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                DC-100</th>
-                                            <th
-                                                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                DC-200
-                                            </th>
-                                            <th
-                                                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                DC-450
-                                            </th>
-                                            <th
-                                                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                DC>400
-                                            </th>                                   
+                                                @lang("Homepage")</th>
                                         </tr>
                                     </thead>
-                                    <tbody>                                        
-                                        @foreach ($anlagenleistungen as $leistungen)
+                                    <tbody>
+                                        @foreach ($herstellerliste as $hersteller)
                                         <tr>
                                             <td>
                                                 <div class="d-flex flex-column justify-content-center">
-                                                    <h6 class="mb-0 text-sm">{{$leistungen["USVname"]}}</h6>
+                                                    <h6 class="mb-0 text-sm">{{$hersteller->name}}</h6>
+
                                                 </div>
                                             </td>
                                             <td class="align-middle text-center">
-                                                @foreach($leistungen[50] as $leistung)
-                                                <span class="text-secondary text-sm">{{$leistung}}kw </span><br>
-                                                @endforeach
+                                                <span class="text-secondary text-sm">{{$hersteller->bild}}</span>
                                             </td>
                                             <td class="align-middle text-center">
-                                                @foreach($leistungen[100] as $leistung)
-                                                <span class="text-secondary text-sm">{{$leistung}}kw </span><br>
-                                                @endforeach
-                                            </td>
-                                            <td class="align-middle text-center">
-                                                @foreach($leistungen[200] as $leistung)
-                                                <span class="text-secondary text-sm">{{$leistung}}kw </span><br>
-                                                @endforeach
-                                            </td>
-                                            <td class="align-middle text-center">
-                                                @foreach($leistungen[400] as $leistung)
-                                                <span class="text-secondary text-sm">{{$leistung}}kw </span><br>
-                                                @endforeach
-                                            </td>
-                                            <td class="align-middle text-center">
-                                                @foreach($leistungen["max"] as $leistung)
-                                                <span class="text-secondary text-sm">{{$leistung}}kw </span><br>
-                                                @endforeach
-                                            </td>
+                                                <span class="text-secondary text-sm"><a href="{{$hersteller->url}}" target='#'>{{$hersteller->url}}</a></span>
+                                            </td>                                            
                                             <!--<td class="align-middle">
                                                 <a rel="tooltip" class="btn btn-success btn-link"
                                                     href="" data-original-title=""

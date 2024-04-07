@@ -2,10 +2,10 @@
     <x-navbars.sidebar activePage='dashboard'></x-navbars.sidebar>
     <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
         <!-- Navbar -->
-        <x-navbars.navs.auth titlePage="Anlagen" activePage="Dashboard"></x-navbars.navs.auth>
+        <x-navbars.navs.auth titlePage="{{__('UPS Systems')}}" activePage="Dashboard"></x-navbars.navs.auth>
         <!-- End Navbar -->
         <div class="container-fluid py-4">
-            <div class="row">
+            <div class="row" style="height: calc(100vh - 230px)">
                 <div class="col-12">
                     <div class="card my-4">                        
                         <div class="card-body px-0 pb-2">
@@ -15,16 +15,16 @@
                                         <tr>
                                             <th
                                                 class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                NAME</th>
+                                                @lang("NAME")</th>
                                             <th
                                                 class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                ZELLEN MIN</th>
+                                                @lang("MIN CELLS")</th>
                                             <th
                                                 class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                ZELLEN MAX</th>
+                                                @lang("MAC CELLS")</th>
                                             <th
                                                 class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                LEISTUNGSFAKTOR
+                                                @lang("POWER FACTOR")
                                             </th>                                            
                                         </tr>
                                     </thead>

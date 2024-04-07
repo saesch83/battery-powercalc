@@ -1,0 +1,36 @@
+{
+    "Navigation" : "Navigation",
+    "Calculation 'UPS Battery'" : "Berechnung 'USV-Batterien",
+    
+    "Sign out" : "Abmelden",
+    "Type here..." : "Suche hier...",    
+    "Pages" : "Seiten",
+    
+    "Power Ratings" : "Leistungsklassen",
+    "Battery Manufacturer" : "Batterie-Hersteller",
+    "Battery Types" : "Batterietypen",
+
+    "UPS System" : "USV Anlage",
+    "UPS Systems" : "USV Anlagen",
+    "Manufacturer" : "Hersteller",
+    "than lask week" : "seit letzer Woche",
+    "NAME" : "NAME",
+    "LOGO" : "LOGO",
+    "HOMEPAGE" : "HOMEPAGE",
+    "MIN CELLS" : "ZELLEN MIN",
+    "MAX CELLS" : "ZELLEN MAX",
+    "POWER FACTOR" : "LEISTUNGSFAKTOR",
+
+    "Load" : "Load",
+    "Backup Time" : "Backup Time",
+    "End of discharge cell voltage": "End of discharge cell voltage",
+    "Time tolerance 'from'" : "Time tolerance 'from'",
+    "Time tolerance 'to'" : "Time tolerance 'to'",
+    "Temperature" : "Temperatur",
+    "Battery cabinets" : "Battery cabinets",
+    "Min battery strings" : "Min battery strings",
+    "Max battery strings" : "Max battery strings",
+    
+
+    "Fake" : "fake"
+  }

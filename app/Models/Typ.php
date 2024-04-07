@@ -13,6 +13,12 @@ class Typ extends Model
 
     protected $table = 'batterietyp';
 
+    protected $appends = ['hersteller'];
+
+    public function getHerstellerAttribute() {
+        return Hersteller::find($this->id_hersteller);
+    }
+
     public function leistungen(): HasMany
     {
         return $this->hasMany(Leistung::class, 'batterietyp_id', 'id');

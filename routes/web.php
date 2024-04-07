@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\AnlageController;
 use App\Http\Controllers\AnlagenleistungController;
+use App\Http\Controllers\HerstellerController;
+use App\Http\Controllers\PowerCalcController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
@@ -19,7 +21,14 @@ use App\Http\Controllers\SessionsController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-           
+
+
+
+Route::get('language/{locale}', function ($locale) {
+    app()->setLocale($locale);
+    session()->put('locale', $locale);
+    return redirect()->back();
+});
 
 Route::get('/', function () {return redirect('sign-in');})->middleware('guest');
 Route::get('sign-up', [RegisterController::class, 'create'])->middleware('guest')->name('register');
@@ -41,6 +50,9 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 	Route::get('/anlagen', [AnlageController::class, 'index'])->name('anlagen');
 	Route::get('/anlagenleistungen', [AnlagenleistungController::class, 'groupedByAnlage'])->name('anlagenleistungen');
+	Route::get('/hersteller', [HerstellerController::class, 'index'])->name('hersteller');
+	Route::get('/batterycalc',[PowerCalcController::class,'edit'])->name('batterycalc');
+	Route::post('/batterycalc',[PowerCalcController::class,'batteryCalc'])->name('batterycalcShow');
 
 	Route::get('notifications', function () {
 		return view('pages.notifications');
