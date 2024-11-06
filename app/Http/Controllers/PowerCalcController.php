@@ -17,7 +17,7 @@ use App\plugins\CubicSplines;
 class PowerCalcController extends Controller
 {
     
-    function edit(){
+    function edit(Request $request){
 
         $formData["anlagen"] = Anlagenleistung::all();
 
@@ -45,8 +45,15 @@ class PowerCalcController extends Controller
             $formData["strings"][] = $i;
         }
 
-
-        return view("pages.batterycalc", ["formData" => $formData]);
+        if($request)
+        {   
+            $return_array = $this->batteryCalc($request);
+            return view("pages.batterycalc", ["formData" => $formData, "return_array" => $return_array, "request" => $request]);
+        }
+        else
+        {
+            return view("pages.batterycalc", ["formData" => $formData]);
+        }         
     }
     
     function interpolieren($inputkoordinaten, $wert)
@@ -166,7 +173,7 @@ class PowerCalcController extends Controller
         $autonomiezeitmax = $request["autonomiezeitmax"];
         $entladeschlussspanung = $request["entladeschlussspanung"];
         $batteriebloecke = null;
-
+        $return_array = [];
         $anlagenleistung = Anlagenleistung::find($request["usv_leistungs_id"]);
 
         if(!empty($anlagenleistung)){
@@ -218,10 +225,6 @@ class PowerCalcController extends Controller
             
             return $return_array;
         }
-        else{
-            return response()->json([
-                "message" => "Anlagenleistung fehlt"
-            ], 404);
-        }
+      
     }
 }

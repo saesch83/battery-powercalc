@@ -52,7 +52,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/anlagenleistungen', [AnlagenleistungController::class, 'groupedByAnlage'])->name('anlagenleistungen');
 	Route::get('/hersteller', [HerstellerController::class, 'index'])->name('hersteller');
 	Route::get('/batterycalc',[PowerCalcController::class,'edit'])->name('batterycalc');
-	Route::post('/batterycalc',[PowerCalcController::class,'batteryCalc'])->name('batterycalcShow');
+	Route::post('/batterycalc',[PowerCalcController::class,'edit'])->name('batterycalc');
 
 	Route::get('notifications', function () {
 		return view('pages.notifications');
