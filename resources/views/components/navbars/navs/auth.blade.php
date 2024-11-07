@@ -16,7 +16,7 @@
             <div class="ms-md-auto pe-md-3 d-flex align-items-center">
                 @include('partials/language_switcher')&nbsp;
                 <div class="input-group input-group-outline">
-                    <label class="form-label">@lang("Type here...")</label>
+                    <label class="form-label">@lang("Search")</label>
                     <input type="text" class="form-control">
                 </div>
             </div>
